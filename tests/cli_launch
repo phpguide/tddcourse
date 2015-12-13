@@ -1,0 +1,5 @@
+php vendor/phpunit/phpunit/phpunit ./tests/
+    -c tests/phpunit.xml
+    --bootstrap tests/bootstrap.php
+    --coverage-html ./tests/reports/
+
