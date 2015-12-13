@@ -1,0 +1,37 @@
+<?php
+namespace Site1;
+
+class AuthenticationTest extends \PHPUnit_Framework_TestCase
+{
+    /** @var Authentication */
+    private $auth = null;
+    /** @var LoggerDouble */
+    private $logger = null;
+
+    public function setUp(){
+        $this->logger = new LoggerDouble();
+        $userFinder = new UserFinderDouble();
+        $this->auth = new Authentication($userFinder, $this->logger);
+    }
+
+    public function testLoginCorrectPassword() {
+        $result = $this->auth->Auth('m@ex.com', 'qwerty');
+        $this->assertTrue($result);
+        $this->assertEquals("All good ;)", $this->logger->message);
+    }
+}
+
+class LoggerDouble implements ILogger{
+    public $message;
+    public function Log($string) {
+        $this->message = $string;
+    }
+}
+
+class UserFinderDouble implements IUserFinder{
+    function FindUserByMail(string $mail) {
+        return new User($mail, 'qwerty');
+    }
+}
+
+

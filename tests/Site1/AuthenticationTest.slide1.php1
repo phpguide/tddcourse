@@ -1,0 +1,25 @@
+<?php
+namespace Site1;
+
+class AuthenticationTest extends \PHPUnit_Framework_TestCase
+{
+    /** @var Authentication */
+    private $auth = null;
+
+    public function setUp()
+    {
+        $this->auth = new Authentication(???, ???);
+    }
+
+    public function testLoginCorrectPassword() {
+
+        $result = $this->auth->Auth('email@example.com', 'qwerty');
+        $this->assertTrue($result);
+        // Assert that message was written to log ??
+    }
+
+    public function testLogin_Incorrect_Password() {}
+    public function testLogin_Incorrect_Email() {}
+    public function testLogin_Crappy_Input_ThrowsException() {}
+}
+
